@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Robot Navigation System: Навигация робота с запретными зонами</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Robot Navigation System<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Управление роботом с запретными зонами</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Навигация робота с запретными зонами </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="mainpage"></a> </p>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Лабораторная работа по технической документации</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"><b>Параметр</b>   </th><th class="markdownTableHeadNone"><b>Значение</b>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Название</b>   </td><td class="markdownTableBodyNone">Robot Navigation System    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Язык</b>   </td><td class="markdownTableBodyNone">Python 3    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Дата</b>   </td><td class="markdownTableBodyNone">2026   </td></tr>
+</table>
+<hr  />
+<h1><a class="anchor" id="autotoc_md2"></a>
+Описание программы</h1>
+<p>Программа управляет движением робота на <b>поле 100х100</b>. Робот начинает движение из точки (1,1). Пользователь может:</p>
+<ol type="1">
+<li>Задать прямоугольные запретные зоны</li>
+<li>Написать программу движения на высокоуровневых командах</li>
+<li>Получить траекторию в виде списка координат</li>
+</ol>
+<hr  />
+<h1><a class="anchor" id="autotoc_md4"></a>
+Структура кода</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Функция   </th><th class="markdownTableHeadNone">Назначение    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>post_zapret</code>   </td><td class="markdownTableBodyNone">Формирование списка точек запретной зоны    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>zapret_zona</code>   </td><td class="markdownTableBodyNone">Ввод всех запретных зон    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>prov</code>   </td><td class="markdownTableBodyNone">Проверка столкновений    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>gran</code>   </td><td class="markdownTableBodyNone">Проверка границ поля    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>count_b</code>   </td><td class="markdownTableBodyNone">Очистка лишних команд B    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>high_level</code>   </td><td class="markdownTableBodyNone">Ввод высокоуровневых команд    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>low_level</code>   </td><td class="markdownTableBodyNone">Генерация траектории   </td></tr>
+</table>
+<hr  />
+<h1><a class="anchor" id="autotoc_md6"></a>
+Ссылки</h1>
+<ul>
+<li><a href="https://www.doxygen.nl/manual/">Doxygen Manual</a></li>
+<li><a href="https://docs.python.org/3/">Python Documentation</a></li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md8"></a>
+Особенности</h1>
+<dl class="section note"><dt>Заметки</dt><dd>Границы поля заданы (1..100) </dd></dl>
+<dl class="section warning"><dt>Предупреждения</dt><dd>При выходе за границу программа завершается </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Необходимо сделать:</a></b></dt><dd>Добавить проверку корректности ввода</dd></dl>
+<hr  />
+ </div></div><!-- PageDoc -->
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

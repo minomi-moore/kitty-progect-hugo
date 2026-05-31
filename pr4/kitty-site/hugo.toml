@@ -1,0 +1,22 @@
+baseURL = 'https://example.org/'
+locale = 'en-us'
+theme = 'PaperMod'
+title = 'Kitty project'
+
+[params]
+  defaultTheme = "auto"
+  ShowBreadCrumbs = true
+
+[params.homeInfoParams]
+    Title = "Hello, Dmitry Borisovich!"
+    Content = "This is my static website for taking a laboratory test at PetrSU"
+
+[[menus.main]]
+  name = "About me"
+  url = "/aboutme/"
+  weight = 2
+
+[[menus.main]]
+  name = "Session"
+  url = "/session/"
+  weight = 3        

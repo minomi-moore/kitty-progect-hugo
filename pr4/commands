@@ -1,0 +1,15 @@
+hugo new site kitty-site
+cd kitty-site
+git init 
+git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+
+Работа с заданием.
+hugo new content aboutme.md
+
+Шаблоны 
+mkdir -p layouts/partials
+
+
+запуск сервера
+hugo server -D
+

@@ -1,0 +1,76 @@
+\chapter{Навигация робота с запретными зонами}
+\hypertarget{index}{}\label{index}\index{Навигация робота с запретными зонами@{Навигация робота с запретными зонами}}
+\label{index_mainpage}%
+\Hypertarget{index_mainpage}%
+ \hypertarget{index_autotoc_md0}{}\doxysection{\texorpdfstring{Лабораторная работа по технической документации}{Лабораторная работа по технической документации}}\label{index_autotoc_md0}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Параметр}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Значение}}    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Параметр}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Значение}}    }\\\cline{1-2}
+\endhead
+{\bfseries{Название}}   &Robot Navigation System    \\\cline{1-2}
+{\bfseries{Язык}}   &Python 3    \\\cline{1-2}
+{\bfseries{Дата}}   &2026   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Описание программы}{Описание программы}}\label{index_autotoc_md2}
+Программа управляет движением робота на {\bfseries{поле 100х100}}. Робот начинает движение из точки (1,1). Пользователь может\+:
+
+
+\begin{DoxyEnumerate}
+\item Задать прямоугольные запретные зоны
+\item Написать программу движения на высокоуровневых командах
+\item Получить траекторию в виде списка координат
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Структура кода}{Структура кода}}\label{index_autotoc_md4}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Функция   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Назначение    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Функция   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Назначение    }\\\cline{1-2}
+\endhead
+{\ttfamily post\+\_\+zapret}   &Формирование списка точек запретной зоны    \\\cline{1-2}
+{\ttfamily zapret\+\_\+zona}   &Ввод всех запретных зон    \\\cline{1-2}
+{\ttfamily prov}   &Проверка столкновений    \\\cline{1-2}
+{\ttfamily gran}   &Проверка границ поля    \\\cline{1-2}
+{\ttfamily count\+\_\+b}   &Очистка лишних команд B    \\\cline{1-2}
+{\ttfamily high\+\_\+level}   &Ввод высокоуровневых команд    \\\cline{1-2}
+{\ttfamily low\+\_\+level}   &Генерация траектории   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{Ссылки}{Ссылки}}\label{index_autotoc_md6}
+
+\begin{DoxyItemize}
+\item \href{https://www.doxygen.nl/manual/}{\texttt{ Doxygen Manual}}
+\item \href{https://docs.python.org/3/}{\texttt{ Python Documentation}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{Особенности}{Особенности}}\label{index_autotoc_md8}
+\begin{DoxyNote}{Заметки}
+Границы поля заданы (1..100) 
+\end{DoxyNote}
+\begin{DoxyWarning}{Предупреждения}
+При выходе за границу программа завершается 
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Необходимо сделать}
+\item[\mbox{\hyperlink{todo__todo000001}{Необходимо сделать}}]Добавить проверку корректности ввода\end{DoxyRefDesc}
+
+
+\DoxyHorRuler{0}
+ 

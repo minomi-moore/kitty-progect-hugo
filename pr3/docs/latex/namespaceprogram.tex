@@ -1,0 +1,579 @@
+\doxysection{Пространство имен program}
+\hypertarget{namespaceprogram}{}\label{namespaceprogram}\index{program@{program}}
+\doxysubsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceprogram_a7cc745b4b8d1bb2a23551476ccacca0e}{post\+\_\+zapret}} (x, y, w, h)
+\item 
+\mbox{\hyperlink{namespaceprogram_af7afbaf911ff496c357312f9ef4e1933}{zapret\+\_\+zona}} ()
+\item 
+\mbox{\hyperlink{namespaceprogram_a0694f04baba78084ea8ad7f04718bac7}{prov}} (\mbox{\hyperlink{namespaceprogram_a756925c479b91c4ac2dbc81ca7b71605}{move\+\_\+low}}, \mbox{\hyperlink{namespaceprogram_ab4f8902d0d9dfb9369fd844b0e49c815}{zapret}})
+\item 
+\mbox{\hyperlink{namespaceprogram_a2ab42dd88fdc0a296339e9395bc95f2b}{gran}} (start\+\_\+pozicion)
+\item 
+\mbox{\hyperlink{namespaceprogram_a542ecd3b15b1c30f32db85a5a633fb06}{count\+\_\+b}} (\mbox{\hyperlink{namespaceprogram_afc76a41907815ea4083ca1f33dea36c2}{move\+\_\+high}})
+\item 
+\mbox{\hyperlink{namespaceprogram_a5748f7416d3684203e712858795c0800}{high\+\_\+level}} ()
+\item 
+\mbox{\hyperlink{namespaceprogram_a179cafd6239c5797231b913575490953}{low\+\_\+level}} (\mbox{\hyperlink{namespaceprogram_afc76a41907815ea4083ca1f33dea36c2}{move\+\_\+high}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceprogram_ab4f8902d0d9dfb9369fd844b0e49c815}{zapret}} = \mbox{\hyperlink{namespaceprogram_af7afbaf911ff496c357312f9ef4e1933}{zapret\+\_\+zona}}()
+\item 
+\mbox{\hyperlink{namespaceprogram_afc76a41907815ea4083ca1f33dea36c2}{move\+\_\+high}} = \mbox{\hyperlink{namespaceprogram_a5748f7416d3684203e712858795c0800}{high\+\_\+level}}()
+\item 
+\mbox{\hyperlink{namespaceprogram_a756925c479b91c4ac2dbc81ca7b71605}{move\+\_\+low}} = \mbox{\hyperlink{namespaceprogram_a179cafd6239c5797231b913575490953}{low\+\_\+level}}(\mbox{\hyperlink{namespaceprogram_afc76a41907815ea4083ca1f33dea36c2}{move\+\_\+high}})
+\item 
+\mbox{\hyperlink{namespaceprogram_a11154ff39f30e58c36b6f2189d805382}{rez}} = \mbox{\hyperlink{namespaceprogram_a756925c479b91c4ac2dbc81ca7b71605}{move\+\_\+low}}\mbox{[}1\+:\mbox{]}
+\item 
+\mbox{\hyperlink{namespaceprogram_a11b463c4037de932fdcde841fe79b927}{rez\+\_\+prov}} = \mbox{\hyperlink{namespaceprogram_a0694f04baba78084ea8ad7f04718bac7}{prov}}(\mbox{\hyperlink{namespaceprogram_a756925c479b91c4ac2dbc81ca7b71605}{move\+\_\+low}},\mbox{\hyperlink{namespaceprogram_ab4f8902d0d9dfb9369fd844b0e49c815}{zapret}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+\begin{DoxyVerb}@mainpage Робот с запретными зонами
+@author Замятина София
+@date 14.05.2026
+
+@page page1 - Страница 1
+@section Характеристика программы
+@subsection Описание программы
+Программа реализует систему управления роботом на поле 100х100 с заданием запретных зон.
+Начало движения - (1,1).Поддерживается высокоуровневое задание траектории с командами R, L,
+U, D и командой B (откат на N шагов назад). На выход программа подает путь робота по
+координатам (х,у)
+
+@subsection Что может программа?
+- Задание произвольного количества прямоугольных запретных зон
+- Контроль выхода за границы поля
+- Проверка столкновений с запретными зонами
+
+@subsection Команды движения
+R,N - движение вправо на N шагов
+L,N - движение влево на N шагов
+U,N - движение вверх на N шагов
+D,N - движение вниз на N шагов
+B - откат на один шаг назад (команда-отмена)
+
+@page page2 - Страница 2
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Функции}
+\Hypertarget{namespaceprogram_a542ecd3b15b1c30f32db85a5a633fb06}\label{namespaceprogram_a542ecd3b15b1c30f32db85a5a633fb06} 
+\index{program@{program}!count\_b@{count\_b}}
+\index{count\_b@{count\_b}!program@{program}}
+\doxysubsubsection{\texorpdfstring{count\_b()}{count\_b()}}
+{\footnotesize\ttfamily program.\+count\+\_\+b (\begin{DoxyParamCaption}\item[{}]{move\+\_\+high }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Удаление лишних команд B из программы движения
+
+@details Функция оставляет только последнюю команду B в списке,
+     так как только она имеет реальный эффект при выполнении.
+     Все предыдущие команды B удаляются.
+
+@param move_high Список высокоуровневых команд
+
+@return Новый список команд без лишних B
+
+@code
+# Пример:
+Вход: [['R',2], ['B',1], ['U',3], ['B',2]]
+Выход: [['R',2], ['U',3], ['B',2]]
+@endcode
+
+@see high_level
+\end{DoxyVerb}
+ 
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00138}{138}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00138\ \textcolor{keyword}{def\ }count\_b(move\_high):}
+\DoxyCodeLine{00139\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00140\ \textcolor{stringliteral}{@brief\ Удаление\ лишних\ команд\ B\ из\ программы\ движения}}
+\DoxyCodeLine{00141\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00142\ \textcolor{stringliteral}{@details\ Функция\ оставляет\ только\ последнюю\ команду\ B\ в\ списке,}}
+\DoxyCodeLine{00143\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ так\ как\ только\ она\ имеет\ реальный\ эффект\ при\ выполнении.}}
+\DoxyCodeLine{00144\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ Все\ предыдущие\ команды\ B\ удаляются.}}
+\DoxyCodeLine{00145\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00146\ \textcolor{stringliteral}{@param\ move\_high\ Список\ высокоуровневых\ команд}}
+\DoxyCodeLine{00147\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00148\ \textcolor{stringliteral}{@return\ Новый\ список\ команд\ без\ лишних\ B}}
+\DoxyCodeLine{00149\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00150\ \textcolor{stringliteral}{@code}}
+\DoxyCodeLine{00151\ \textcolor{stringliteral}{\#\ Пример:}}
+\DoxyCodeLine{00152\ \textcolor{stringliteral}{Вход:\ [['R',2],\ ['B',1],\ ['U',3],\ ['B',2]]}}
+\DoxyCodeLine{00153\ \textcolor{stringliteral}{Выход:\ [['R',2],\ ['U',3],\ ['B',2]]}}
+\DoxyCodeLine{00154\ \textcolor{stringliteral}{@endcode}}
+\DoxyCodeLine{00155\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00156\ \textcolor{stringliteral}{@see\ high\_level}}
+\DoxyCodeLine{00157\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ cnt\_B\ =\ 0}
+\DoxyCodeLine{00160\ \ \ \ \ new\_move\_high\ =\ []}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ move\_high:}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i[0]\ ==\ \textcolor{stringliteral}{'B'}):}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ cnt\_B\ +=\ 1}
+\DoxyCodeLine{00164\ \ \ \ \ last\_B\ =\ -\/1}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{if}\ (cnt\_B\ >\ 1):}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(move\_high)-\/1,-\/1,-\/1):}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move\_high[i][0]\ ==\ \textcolor{stringliteral}{'B'}):}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ last\_B\ =\ i}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(move\_high)):}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (move\_high[i][0]\ ==\ \textcolor{stringliteral}{'B'}\ \textcolor{keywordflow}{and}\ i\ !=\ last\_B):}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ new\_move\_high.append(move\_high[i])}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ new\_move\_high}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{comment}{\#строим\ список\ с\ высокоуровневой\ прогой}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceprogram_a2ab42dd88fdc0a296339e9395bc95f2b}\label{namespaceprogram_a2ab42dd88fdc0a296339e9395bc95f2b} 
+\index{program@{program}!gran@{gran}}
+\index{gran@{gran}!program@{program}}
+\doxysubsubsection{\texorpdfstring{gran()}{gran()}}
+{\footnotesize\ttfamily program.\+gran (\begin{DoxyParamCaption}\item[{}]{start\+\_\+pozicion }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Проверка выхода за границы поля
+
+@details Функция проверяет, находятся ли координаты робота в пределах
+     поля от 1 до 100 по x или по y. При выходе за границы программа
+     завершается с сообщением об ошибке.
+
+@param start_pozicion Текущие координаты робота [x, y]
+
+@return Всегда возвращает True, если проверка пройдена
+
+@note <3
+\end{DoxyVerb}
+ 
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00117}{117}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117\ \textcolor{keyword}{def\ }gran(start\_pozicion):}
+\DoxyCodeLine{00118\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00119\ \textcolor{stringliteral}{@brief\ Проверка\ выхода\ за\ границы\ поля}}
+\DoxyCodeLine{00120\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00121\ \textcolor{stringliteral}{@details\ Функция\ проверяет,\ находятся\ ли\ координаты\ робота\ в\ пределах}}
+\DoxyCodeLine{00122\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ поля\ от\ 1\ до\ 100\ по\ x\ или\ по\ y.\ При\ выходе\ за\ границы\ программа}}
+\DoxyCodeLine{00123\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ завершается\ с\ сообщением\ об\ ошибке.}}
+\DoxyCodeLine{00124\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00125\ \textcolor{stringliteral}{@param\ start\_pozicion\ Текущие\ координаты\ робота\ [x,\ y]}}
+\DoxyCodeLine{00126\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00127\ \textcolor{stringliteral}{@return\ Всегда\ возвращает\ True,\ если\ проверка\ пройдена}}
+\DoxyCodeLine{00128\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00129\ \textcolor{stringliteral}{@note\ <3}}
+\DoxyCodeLine{00130\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{if}\ (start\_pozicion[0]\ <=\ 0\ \textcolor{keywordflow}{or}\ start\_pozicion[0]\ >\ 100\ \textcolor{keywordflow}{or}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_pozicion[1]\ <=\ 0\ \textcolor{keywordflow}{or}\ start\_pozicion[1]\ >\ 100):}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Выход\ за\ границу!"{}})}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{comment}{\#удаляем\ ненужные\ В}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceprogram_a5748f7416d3684203e712858795c0800}\label{namespaceprogram_a5748f7416d3684203e712858795c0800} 
+\index{program@{program}!high\_level@{high\_level}}
+\index{high\_level@{high\_level}!program@{program}}
+\doxysubsubsection{\texorpdfstring{high\_level()}{high\_level()}}
+{\footnotesize\ttfamily program.\+high\+\_\+level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Ввод высокоуровневой программы движения
+
+@details Функция построчно считывает команды движения. Ввод продолжается
+     до тех пор, пока пользователь не введет Enter.
+
+@note Команды описаны на Странице 1
+@return Список команд в формате [['буква', число], ...]
+
+@warning При вводе неверной команды программа завершается
+
+@see low_level
+@see count_b
+\end{DoxyVerb}
+ 
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00177}{177}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00177\ \textcolor{keyword}{def\ }high\_level():}
+\DoxyCodeLine{00178\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00179\ \textcolor{stringliteral}{@brief\ Ввод\ высокоуровневой\ программы\ движения}}
+\DoxyCodeLine{00180\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00181\ \textcolor{stringliteral}{@details\ Функция\ построчно\ считывает\ команды\ движения.\ Ввод\ продолжается}}
+\DoxyCodeLine{00182\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ до\ тех\ пор,\ пока\ пользователь\ не\ введет\ Enter.}}
+\DoxyCodeLine{00183\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00184\ \textcolor{stringliteral}{@note\ Команды\ описаны\ на\ Странице\ 1}}
+\DoxyCodeLine{00185\ \textcolor{stringliteral}{@return\ Список\ команд\ в\ формате\ [['буква',\ число],\ ...]}}
+\DoxyCodeLine{00186\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00187\ \textcolor{stringliteral}{@warning\ При\ вводе\ неверной\ команды\ программа\ завершается}}
+\DoxyCodeLine{00188\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00189\ \textcolor{stringliteral}{@see\ low\_level}}
+\DoxyCodeLine{00190\ \textcolor{stringliteral}{@see\ count\_b}}
+\DoxyCodeLine{00191\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00192\ \ \ \ \ move\_high\ =\ []}
+\DoxyCodeLine{00193\ \ \ \ \ print(\textcolor{stringliteral}{"{}Введите\ передвижения:"{}})}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{while}\ (1):}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ a\ =\ str(input())}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len(a)\ ==\ 0):}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (a[0]\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ \textcolor{stringliteral}{"{}LRUDB"{}}):}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Неверный\ формат\ ввода"{}})}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ if(a\ ==\ \textcolor{stringliteral}{'B'}):}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move\_high.append([\textcolor{stringliteral}{'B'},1])}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move\_high.append(a.split(\textcolor{stringliteral}{','}))}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ move\_high}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{comment}{\#строим\ список\ низкоуровневой\ программы}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceprogram_a179cafd6239c5797231b913575490953}\label{namespaceprogram_a179cafd6239c5797231b913575490953} 
+\index{program@{program}!low\_level@{low\_level}}
+\index{low\_level@{low\_level}!program@{program}}
+\doxysubsubsection{\texorpdfstring{low\_level()}{low\_level()}}
+{\footnotesize\ttfamily program.\+low\+\_\+level (\begin{DoxyParamCaption}\item[{}]{move\+\_\+high }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Преобразование высокоуровневой программы в траекторию движения
+
+@details Функция интерпретирует команды высокого уровня и генерирует
+     список всех промежуточных координат, которые посещает робот.
+
+@param move_high Список высокоуровневых команд
+
+@return Список всех координат траектории (включая начальную точку)
+
+@note Команда B инвертирует движение: R становится L, U становится D и т.д.
+@warning Требуется предварительная очистка списка команд от лишних B
+
+@see gran
+@see high_level
+@see count_b
+\end{DoxyVerb}
+ 
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00209}{209}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00209\ \textcolor{keyword}{def\ }low\_level(move\_high):}
+\DoxyCodeLine{00210\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00211\ \textcolor{stringliteral}{@brief\ Преобразование\ высокоуровневой\ программы\ в\ траекторию\ движения}}
+\DoxyCodeLine{00212\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00213\ \textcolor{stringliteral}{@details\ Функция\ интерпретирует\ команды\ высокого\ уровня\ и\ генерирует}}
+\DoxyCodeLine{00214\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ список\ всех\ промежуточных\ координат,\ которые\ посещает\ робот.}}
+\DoxyCodeLine{00215\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00216\ \textcolor{stringliteral}{@param\ move\_high\ Список\ высокоуровневых\ команд}}
+\DoxyCodeLine{00217\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00218\ \textcolor{stringliteral}{@return\ Список\ всех\ координат\ траектории\ (включая\ начальную\ точку)}}
+\DoxyCodeLine{00219\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00220\ \textcolor{stringliteral}{@note\ Команда\ B\ инвертирует\ движение:\ R\ становится\ L,\ U\ становится\ D\ и\ т.д.}}
+\DoxyCodeLine{00221\ \textcolor{stringliteral}{@warning\ Требуется\ предварительная\ очистка\ списка\ команд\ от\ лишних\ B}}
+\DoxyCodeLine{00222\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00223\ \textcolor{stringliteral}{@see\ gran}}
+\DoxyCodeLine{00224\ \textcolor{stringliteral}{@see\ high\_level}}
+\DoxyCodeLine{00225\ \textcolor{stringliteral}{@see\ count\_b}}
+\DoxyCodeLine{00226\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00227\ \ \ \ \ start\_pozicion\ =\ [1,\ 1]}
+\DoxyCodeLine{00228\ \ \ \ \ move\_low\ =\ [start\_pozicion.copy()]}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(len(move\_high)):}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ letter\ =\ move\_high[i][0]}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ number\ =\ int(move\_high[i][1])}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ letter\ ==\ \textcolor{stringliteral}{"{}B"{}}:}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ range(i-\/1,max(0,\ i-\/number)-\/1,\ -\/1):}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ back\_letter\ =\ move\_high[j][0]}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ back\_number\ =\ int(move\_high[j][1])}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#Инверсия\ движения}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ \_\ \textcolor{keywordflow}{in}\ range(back\_number):}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ back\_letter\ ==\ \textcolor{stringliteral}{"{}R"{}}:}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_pozicion[0]\ -\/=\ 1}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ back\_letter\ ==\ \textcolor{stringliteral}{"{}L"{}}:}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_pozicion[0]\ +=\ 1}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ back\_letter\ ==\ \textcolor{stringliteral}{"{}U"{}}:}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_pozicion[1]\ +=\ 1}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ back\_letter\ ==\ \textcolor{stringliteral}{"{}D"{}}:}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_pozicion[1]\ -\/=\ 1}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gran(start\_pozicion)}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move\_low.append(start\_pozicion.copy())}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ letter\ ==\ \textcolor{stringliteral}{'R'}:}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k\ \textcolor{keywordflow}{in}\ range(number):}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_pozicion[0]\ +=\ 1}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gran(start\_pozicion)}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move\_low.append(start\_pozicion.copy())}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ letter\ ==\ \textcolor{stringliteral}{'L'}:}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k\ \textcolor{keywordflow}{in}\ range(number):}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_pozicion[0]\ -\/=\ 1}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gran(start\_pozicion)}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move\_low.append(start\_pozicion.copy())}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ letter\ ==\ \textcolor{stringliteral}{'U'}:}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k\ \textcolor{keywordflow}{in}\ range(number):}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_pozicion[1]\ -\/=\ 1}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gran(start\_pozicion)}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move\_low.append(start\_pozicion.copy())}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ letter\ ==\ \textcolor{stringliteral}{'D'}:}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k\ \textcolor{keywordflow}{in}\ range(number):}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_pozicion[1]\ +=\ 1}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gran(start\_pozicion)}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move\_low.append(start\_pozicion.copy())}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{return}\ move\_low}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00275\ \textcolor{stringliteral}{@section\ Основной\ блок\ выполнения\ программы}}
+\DoxyCodeLine{00276\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00277\ \textcolor{stringliteral}{@subsection\ Последовательность\ работы:}}
+\DoxyCodeLine{00278\ \textcolor{stringliteral}{1.\ Ввод\ запретных\ зон\ (функция\ zapret\_zona)}}
+\DoxyCodeLine{00279\ \textcolor{stringliteral}{2.\ Ввод\ высокоуровневой\ программы\ (функция\ high\_level)}}
+\DoxyCodeLine{00280\ \textcolor{stringliteral}{3.\ Очистка\ списка\ команд\ от\ лишних\ B\ (функция\ count\_b)}}
+\DoxyCodeLine{00281\ \textcolor{stringliteral}{4.\ Генерация\ траектории\ движения\ (функция\ low\_level)}}
+\DoxyCodeLine{00282\ \textcolor{stringliteral}{5.\ Проверка\ на\ столкновения\ с\ запретными\ зонами\ (функция\ prov)}}
+\DoxyCodeLine{00283\ \textcolor{stringliteral}{6.\ Вывод\ результата\ или\ сообщение\ об\ ошибке}}
+\DoxyCodeLine{00284\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00285\ \textcolor{stringliteral}{@note\ Начальная\ позиция\ (1,1)\ не\ выводится\ в\ результат}}
+\DoxyCodeLine{00286\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00287\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00288\ }
+
+\end{DoxyCode}
+\Hypertarget{namespaceprogram_a7cc745b4b8d1bb2a23551476ccacca0e}\label{namespaceprogram_a7cc745b4b8d1bb2a23551476ccacca0e} 
+\index{program@{program}!post\_zapret@{post\_zapret}}
+\index{post\_zapret@{post\_zapret}!program@{program}}
+\doxysubsubsection{\texorpdfstring{post\_zapret()}{post\_zapret()}}
+{\footnotesize\ttfamily program.\+post\+\_\+zapret (\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{w,  }\item[{}]{h }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Формирование списка точек прямоугольной запретной зоны
+    @details Функция создает список всех координах, входящих в прямоугольник с
+         левым верхним углом (х,у), шириной w и высотой h.
+
+    @param x Координата X левого верхнего левого угла зоны
+    @param y Координата Y левого верхнего левого угла зоны
+    @param w Ширина зоны
+    @param h Высота зоны
+
+    @return Список кортежей (х,у) всех точек, входящих в запретную зону
+    @code
+    point = post_zapret(5,5,2,2)
+    # Результат: [(5,5), (5,6), (6,5), (6,6)]
+    @endcode
+
+    @note пасхалко Дмитрию Борисовичу
+    @warning Функция не проверяет выход за границы поля
+    @todo Добавить проверку зон\end{DoxyVerb}
+ 
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00031}{31}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \textcolor{keyword}{def\ }post\_zapret(x,\ y,\ w,\ h):}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00033\ \textcolor{stringliteral}{\ \ \ \ @brief\ Формирование\ списка\ точек\ прямоугольной\ запретной\ зоны}}
+\DoxyCodeLine{00034\ \textcolor{stringliteral}{\ \ \ \ @details\ Функция\ создает\ список\ всех\ координах,\ входящих\ в\ прямоугольник\ с}}
+\DoxyCodeLine{00035\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ левым\ верхним\ углом\ (х,у),\ шириной\ w\ и\ высотой\ h.}}
+\DoxyCodeLine{00036\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00037\ \textcolor{stringliteral}{\ \ \ \ @param\ x\ Координата\ X\ левого\ верхнего\ левого\ угла\ зоны}}
+\DoxyCodeLine{00038\ \textcolor{stringliteral}{\ \ \ \ @param\ y\ Координата\ Y\ левого\ верхнего\ левого\ угла\ зоны}}
+\DoxyCodeLine{00039\ \textcolor{stringliteral}{\ \ \ \ @param\ w\ Ширина\ зоны}}
+\DoxyCodeLine{00040\ \textcolor{stringliteral}{\ \ \ \ @param\ h\ Высота\ зоны}}
+\DoxyCodeLine{00041\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00042\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @return\ Список\ кортежей\ (х,у)\ всех\ точек,\ входящих\ в\ запретную\ зону}}
+\DoxyCodeLine{00043\ \textcolor{stringliteral}{\ \ \ \ @code}}
+\DoxyCodeLine{00044\ \textcolor{stringliteral}{\ \ \ \ point\ =\ post\_zapret(5,5,2,2)}}
+\DoxyCodeLine{00045\ \textcolor{stringliteral}{\ \ \ \ \#\ Результат:\ [(5,5),\ (5,6),\ (6,5),\ (6,6)]}}
+\DoxyCodeLine{00046\ \textcolor{stringliteral}{\ \ \ \ @endcode}}
+\DoxyCodeLine{00047\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00048\ \textcolor{stringliteral}{\ \ \ \ @note\ пасхалко\ Дмитрию\ Борисовичу}}
+\DoxyCodeLine{00049\ \textcolor{stringliteral}{\ \ \ \ @warning\ Функция\ не\ проверяет\ выход\ за\ границы\ поля}}
+\DoxyCodeLine{00050\ \textcolor{stringliteral}{\ \ \ \ @todo\ Добавить\ проверку\ зон}}
+\DoxyCodeLine{00051\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{00052\ \ \ \ \ post\_zapret\_list\ =\ []}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(0,\ w):}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ post\_zapret\_list.append((x+i,\ y))}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k\ \textcolor{keywordflow}{in}\ range(1,\ h):}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ post\_zapret\_list.append((x+i,\ y+k))}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ post\_zapret\_list}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{\#вводим\ запретные\ зоны}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceprogram_a0694f04baba78084ea8ad7f04718bac7}\label{namespaceprogram_a0694f04baba78084ea8ad7f04718bac7} 
+\index{program@{program}!prov@{prov}}
+\index{prov@{prov}!program@{program}}
+\doxysubsubsection{\texorpdfstring{prov()}{prov()}}
+{\footnotesize\ttfamily program.\+prov (\begin{DoxyParamCaption}\item[{}]{move\+\_\+low,  }\item[{}]{zapret }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Проверка попадания траектории в запретные зоны
+
+@details Функция сравнивает каждую точку траектории движения робота
+     с каждой точкой запретных зон. При первом же совпадении
+     возвращает 0.
+
+@param move_low Список координат траектории движения робота
+@param zapret Список запрещенных координат
+
+@return @retval 0 если есть попадание в запретную зону
+    @retval 1 если запретные зоны не затронуты
+
+@warning При длинных списках работает медленно (полный перебор)
+@note Функция не изменяет исходные списки
+
+@see low_level
+\end{DoxyVerb}
+ 
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00091}{91}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00091\ \textcolor{keyword}{def\ }prov(move\_low,zapret):}
+\DoxyCodeLine{00092\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00093\ \textcolor{stringliteral}{@brief\ Проверка\ попадания\ траектории\ в\ запретные\ зоны}}
+\DoxyCodeLine{00094\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00095\ \textcolor{stringliteral}{@details\ Функция\ сравнивает\ каждую\ точку\ траектории\ движения\ робота}}
+\DoxyCodeLine{00096\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ с\ каждой\ точкой\ запретных\ зон.\ При\ первом\ же\ совпадении}}
+\DoxyCodeLine{00097\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ возвращает\ 0.}}
+\DoxyCodeLine{00098\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00099\ \textcolor{stringliteral}{@param\ move\_low\ Список\ координат\ траектории\ движения\ робота}}
+\DoxyCodeLine{00100\ \textcolor{stringliteral}{@param\ zapret\ Список\ запрещенных\ координат}}
+\DoxyCodeLine{00101\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00102\ \textcolor{stringliteral}{@return\ @retval\ 0\ если\ есть\ попадание\ в\ запретную\ зону}}
+\DoxyCodeLine{00103\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @retval\ 1\ если\ запретные\ зоны\ не\ затронуты}}
+\DoxyCodeLine{00104\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00105\ \textcolor{stringliteral}{@warning\ При\ длинных\ списках\ работает\ медленно\ (полный\ перебор)}}
+\DoxyCodeLine{00106\ \textcolor{stringliteral}{@note\ Функция\ не\ изменяет\ исходные\ списки}}
+\DoxyCodeLine{00107\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00108\ \textcolor{stringliteral}{@see\ low\_level}}
+\DoxyCodeLine{00109\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ move\_low:}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ j\ \textcolor{keywordflow}{in}\ zapret:}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i[0]\ ==\ j[0]\ \textcolor{keywordflow}{and}\ i[1]\ ==\ j[1]):}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{return}\ 1}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{comment}{\#проверка\ граней}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceprogram_af7afbaf911ff496c357312f9ef4e1933}\label{namespaceprogram_af7afbaf911ff496c357312f9ef4e1933} 
+\index{program@{program}!zapret\_zona@{zapret\_zona}}
+\index{zapret\_zona@{zapret\_zona}!program@{program}}
+\doxysubsubsection{\texorpdfstring{zapret\_zona()}{zapret\_zona()}}
+{\footnotesize\ttfamily program.\+zapret\+\_\+zona (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Ввод запретных зон с клавиатуры
+
+@details Функция запрашивает у пользователя количество запретных зон,
+     затем для каждой зоны вводит координаты левого верхнего угла,
+     ширину и высоту. Все зоны объединяются в общий список.
+
+@return Список всех запрещенных координат из всех зон
+
+@note Ввод осуществляется последовательно: количество зон -> параметры каждой зоны
+@warning Координаты и размеры зон не проверяются на корректность
+@see post_zapret
+\end{DoxyVerb}
+ 
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00061}{61}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \textcolor{keyword}{def\ }zapret\_zona():}
+\DoxyCodeLine{00062\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00063\ \textcolor{stringliteral}{@brief\ Ввод\ запретных\ зон\ с\ клавиатуры}}
+\DoxyCodeLine{00064\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00065\ \textcolor{stringliteral}{@details\ Функция\ запрашивает\ у\ пользователя\ количество\ запретных\ зон,}}
+\DoxyCodeLine{00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ затем\ для\ каждой\ зоны\ вводит\ координаты\ левого\ верхнего\ угла,}}
+\DoxyCodeLine{00067\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ ширину\ и\ высоту.\ Все\ зоны\ объединяются\ в\ общий\ список.}}
+\DoxyCodeLine{00068\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00069\ \textcolor{stringliteral}{@return\ Список\ всех\ запрещенных\ координат\ из\ всех\ зон}}
+\DoxyCodeLine{00070\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00071\ \textcolor{stringliteral}{@note\ Ввод\ осуществляется\ последовательно:\ количество\ зон\ -\/>\ параметры\ каждой\ зоны}}
+\DoxyCodeLine{00072\ \textcolor{stringliteral}{@warning\ Координаты\ и\ размеры\ зон\ не\ проверяются\ на\ корректность}}
+\DoxyCodeLine{00073\ \textcolor{stringliteral}{@see\ post\_zapret}}
+\DoxyCodeLine{00074\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00075\ \ \ \ \ print(\textcolor{stringliteral}{"{}Введите\ количество\ запретных\ зон:\ "{}})}
+\DoxyCodeLine{00076\ \ \ \ \ n\ =\ int(input())}
+\DoxyCodeLine{00077\ \ \ \ \ all\_zones\ =\ []}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{for}\ \_\ \textcolor{keywordflow}{in}\ range(n):}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Введите\ координату\ левого\ верхнего\ угла\ зоны"{}})}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}X,Y"{}})}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ x\ =\ int(input())}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ y\ =\ int(input())}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Введите\ ширину\ зоны"{}})}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ w\ =\ int(input())}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Введите\ высоту\ зоны"{}})}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ h\ =\ int(input())}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ all\_zones\ +=\ post\_zapret(x,y,w,h)}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ all\_zones}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{\#проверка\ зон}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Переменные}
+\Hypertarget{namespaceprogram_afc76a41907815ea4083ca1f33dea36c2}\label{namespaceprogram_afc76a41907815ea4083ca1f33dea36c2} 
+\index{program@{program}!move\_high@{move\_high}}
+\index{move\_high@{move\_high}!program@{program}}
+\doxysubsubsection{\texorpdfstring{move\_high}{move\_high}}
+{\footnotesize\ttfamily program.\+move\+\_\+high = \mbox{\hyperlink{namespaceprogram_a5748f7416d3684203e712858795c0800}{high\+\_\+level}}()}
+
+
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00290}{290}}
+
+\Hypertarget{namespaceprogram_a756925c479b91c4ac2dbc81ca7b71605}\label{namespaceprogram_a756925c479b91c4ac2dbc81ca7b71605} 
+\index{program@{program}!move\_low@{move\_low}}
+\index{move\_low@{move\_low}!program@{program}}
+\doxysubsubsection{\texorpdfstring{move\_low}{move\_low}}
+{\footnotesize\ttfamily program.\+move\+\_\+low = \mbox{\hyperlink{namespaceprogram_a179cafd6239c5797231b913575490953}{low\+\_\+level}}(\mbox{\hyperlink{namespaceprogram_afc76a41907815ea4083ca1f33dea36c2}{move\+\_\+high}})}
+
+
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00292}{292}}
+
+\Hypertarget{namespaceprogram_a11154ff39f30e58c36b6f2189d805382}\label{namespaceprogram_a11154ff39f30e58c36b6f2189d805382} 
+\index{program@{program}!rez@{rez}}
+\index{rez@{rez}!program@{program}}
+\doxysubsubsection{\texorpdfstring{rez}{rez}}
+{\footnotesize\ttfamily program.\+rez = \mbox{\hyperlink{namespaceprogram_a756925c479b91c4ac2dbc81ca7b71605}{move\+\_\+low}}\mbox{[}1\+:\mbox{]}}
+
+
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00293}{293}}
+
+\Hypertarget{namespaceprogram_a11b463c4037de932fdcde841fe79b927}\label{namespaceprogram_a11b463c4037de932fdcde841fe79b927} 
+\index{program@{program}!rez\_prov@{rez\_prov}}
+\index{rez\_prov@{rez\_prov}!program@{program}}
+\doxysubsubsection{\texorpdfstring{rez\_prov}{rez\_prov}}
+{\footnotesize\ttfamily program.\+rez\+\_\+prov = \mbox{\hyperlink{namespaceprogram_a0694f04baba78084ea8ad7f04718bac7}{prov}}(\mbox{\hyperlink{namespaceprogram_a756925c479b91c4ac2dbc81ca7b71605}{move\+\_\+low}},\mbox{\hyperlink{namespaceprogram_ab4f8902d0d9dfb9369fd844b0e49c815}{zapret}})}
+
+
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00295}{295}}
+
+\Hypertarget{namespaceprogram_ab4f8902d0d9dfb9369fd844b0e49c815}\label{namespaceprogram_ab4f8902d0d9dfb9369fd844b0e49c815} 
+\index{program@{program}!zapret@{zapret}}
+\index{zapret@{zapret}!program@{program}}
+\doxysubsubsection{\texorpdfstring{zapret}{zapret}}
+{\footnotesize\ttfamily program.\+zapret = \mbox{\hyperlink{namespaceprogram_af7afbaf911ff496c357312f9ef4e1933}{zapret\+\_\+zona}}()}
+
+
+
+См. определение в файле \mbox{\hyperlink{program_8py_source}{program.\+py}} строка \mbox{\hyperlink{program_8py_source_l00289}{289}}
+

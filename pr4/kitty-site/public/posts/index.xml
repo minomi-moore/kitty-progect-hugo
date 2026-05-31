@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Kitty project</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Kitty project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 30 May 2026 21:40:32 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Literally Chistyakov Dmitry Borisovich</title>
+      <link>http://localhost:1313/posts/third-post/</link>
+      <pubDate>Sat, 30 May 2026 21:40:32 +0300</pubDate>
+      <guid>http://localhost:1313/posts/third-post/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;A IT cat&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/cat.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My first real job</title>
+      <link>http://localhost:1313/posts/second-post/</link>
+      <pubDate>Sat, 30 May 2026 21:27:30 +0300</pubDate>
+      <guid>http://localhost:1313/posts/second-post/</guid>
+      <description>&lt;p&gt;In the summer, I&amp;rsquo;m going to work at a camp as a counselor.
+I&amp;rsquo;ve already passed the exam. Can you imagine?
+I&amp;rsquo;ll be teaching children new things just like you :)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What will I do if you accept my work?</title>
+      <link>http://localhost:1313/posts/first-post/</link>
+      <pubDate>Sat, 30 May 2026 20:36:11 +0300</pubDate>
+      <guid>http://localhost:1313/posts/first-post/</guid>
+      <description>&lt;p&gt;Of course I&amp;rsquo;m going to celebrate! We&amp;rsquo;ll sing at home with a clear conscience.
+And you&amp;rsquo;ll have one less debtor!&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

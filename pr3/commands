@@ -1,0 +1,4 @@
+doxygen -g Doxyfile
+doxygen Doxyfile
+# Открыть сгенерированную документацию
+xdg-open docs/html/index.html
