@@ -1,1 +1,1 @@
-# kitty-progect-hugo
+# hello, teacher!
