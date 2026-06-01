@@ -1,4 +1,4 @@
-# happy house
+# hello, teacher!
 ## I LOVE DEVELOPING TECHNICAL DOCUMENTATION, BUT I SUFFER FROM PROCRASTINATION.
 
 ## ПРИЧИНЫ ПРОСТИТЬ МЕНЯ
@@ -8,6 +8,4 @@
 4. Я сильно стараюсь,просто опаздываю
 5. Лучше поздно,чем никогда?
 6. Простите ради бога!
-
-# It's interesting experience
 
